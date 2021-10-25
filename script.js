@@ -20,14 +20,16 @@ function createPallet(colorNumbers) {
     if (i == 0) {
       divColors.style.backgroundColor = "black"
       cor[i] = "#000"
+      divColors.classList.add('selected')
     } else
       cor[i] = generateColors()
     divColors.style.backgroundColor = cor[i]
+}
 
-    //*divControl.addEventListener('click', selecionar)
 
-  }
+    //divControl.addEventListener('click', selecionar)
 
+  
 
 }
 
@@ -46,6 +48,7 @@ function createCanvas(ctrl){
    let canvasPixie = document.createElement('div');
     document.getElementById('pixel-board').appendChild(canvasPixie)
     canvasPixie.className ='pixel'
+    
     
  if(i==ctrl -1){
  let breakLine = document.createElement('br')
