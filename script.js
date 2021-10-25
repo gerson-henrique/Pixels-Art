@@ -1,6 +1,6 @@
 let cor = [];
 let controle = 5
-
+let vezRodando = true
 function createPallet(colorNumbers) {
 
   let paleta = document.createElement('div')
@@ -44,9 +44,45 @@ function createPallet(colorNumbers) {
 function createCanvas(ctrl) {
 
   let quadro = document.createElement('div')
-
   document.getElementsByTagName('body')[0].appendChild(quadro)
   quadro.id = 'pixel-board'
+  let tamanho = document.getElementById('board-size')
+
+  kills=document.getElementById('pixel-board')
+
+  if(vezRodando==false && tamanho.value == ''){
+console.log
+    alert('Board inválido!')
+
+  }else {
+
+
+
+    if (tamanho.value < 5){
+        if (vezRodando == false){
+        tamanho.value =5;
+    }
+    } else if (tamanho.value> 50){
+        tamanho.value=50
+    }
+
+
+
+
+  if (vezRodando == false) { 
+
+    
+    kills.innerHTML = '';
+  
+   let tamanho = document.getElementById('board-size')
+   ctrl = tamanho.value 
+
+   }
+    
+
+ 
+
+    
 
   for (let o = 0; o < ctrl; o += 1) {
     for (let i = 0; i < ctrl; i += 1) {
@@ -61,9 +97,11 @@ function createCanvas(ctrl) {
         let breakLine = document.createElement('br')
         document.getElementById('pixel-board').appendChild(breakLine)
       }
-
+    
     }
   }
+   vezRodando = false
+}
 }
 
 function generateColors() {
@@ -128,13 +166,41 @@ clearAll.id = "clear-board"
 clearAll.innerText="Limpar"
 clearAll.addEventListener('click',limparTudo)
 
+
+let bonusInput = document.createElement('input')
+bonusInput.id = 'board-size'
+let bonusButon = document.createElement('button') 
+bonusButon.id = 'generate-board'
+document.getElementsByTagName('body')[0].appendChild(bonusInput)
+bonusInput.type = 'number'
+bonusInput.min = 1
+
+
+
+
+document.getElementsByTagName('body')[0].appendChild(bonusButon)
+bonusButon.innerText= 'VQV'
+
+
+
+    bonusButon.addEventListener('click', createCanvas)
+
+
+
 createCanvas(controle)
 
 
 
-function limparTudo (){
+function limparTudo (controle){
 
 
+    let tamanho = document.getElementById('board-size')
+   
+    if (tamanho.value >5 ){
+        controle = tamanho.value 
+}else{
+    controle = 5
+}
 
     for (let o = 0; o < controle; o += 1) {
         for (let i = 0; i < controle; i += 1) {
@@ -152,9 +218,6 @@ function limparTudo (){
       }
 
 
-
-
-
-
-
+    
+     
 
