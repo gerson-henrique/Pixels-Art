@@ -44,15 +44,15 @@ function createCanvas(ctrl){
   for (let i = 0; i < ctrl; i += 1) {
     
    let canvasPixie = document.createElement('div');
-        canvasPixie.className ='pixel'
-    
-
     document.getElementById('pixel-board').appendChild(canvasPixie)
+    canvasPixie.className ='pixel'
+    
+ if(i==ctrl -1){
+ let breakLine = document.createElement('br')
+ document.getElementById('pixel-board').appendChild(breakLine)
+ }
 
 }
-
-
-
   }
     }
 
@@ -64,7 +64,7 @@ function generateColors() {
 
     randomColor += 0
   }
-
+// Minha contribuição para a formula que vez por outra retornava numeros quebrados
 
   return randomColor;
 
@@ -85,4 +85,4 @@ function generateColors() {
 
 
 createPallet(4)
-createCanvas(4)
+createCanvas(5)
