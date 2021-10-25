@@ -1,4 +1,5 @@
 let cor = [];
+let controle = 5
 
 function createPallet(colorNumbers) {
 
@@ -12,6 +13,7 @@ function createPallet(colorNumbers) {
 
     let divColors = colorNumbers[i]
     divColors = document.createElement('div');
+    
     divColors.className = "color";
 
 
@@ -20,44 +22,49 @@ function createPallet(colorNumbers) {
     if (i == 0) {
       divColors.style.backgroundColor = "black"
       cor[i] = "#000"
+      divColors.id = "#000" ;
       divColors.classList.add('selected')
-    } else
+    } else {
       cor[i] = generateColors()
     divColors.style.backgroundColor = cor[i]
+    divColors.id = cor[i] ;
 }
 
+   divColors.addEventListener('click', selecionar)
+    
+  }
 
-    //divControl.addEventListener('click', selecionar)
 
   
 
+
+
 }
 
+function createCanvas(ctrl) {
 
-
-function createCanvas(ctrl){
-
-    let quadro = document.createElement('div')
+  let quadro = document.createElement('div')
 
   document.getElementsByTagName('body')[0].appendChild(quadro)
   quadro.id = 'pixel-board'
 
   for (let o = 0; o < ctrl; o += 1) {
-  for (let i = 0; i < ctrl; i += 1) {
-    
-   let canvasPixie = document.createElement('div');
-    document.getElementById('pixel-board').appendChild(canvasPixie)
-    canvasPixie.className ='pixel'
-    
-    
- if(i==ctrl -1){
- let breakLine = document.createElement('br')
- document.getElementById('pixel-board').appendChild(breakLine)
- }
+    for (let i = 0; i < ctrl; i += 1) {
 
-}
-  }
+      let canvasPixie = document.createElement('div');
+      document.getElementById('pixel-board').appendChild(canvasPixie)
+      canvasPixie.id = canvasPixie.id + i + o
+      canvasPixie.className = 'pixel'
+      canvasPixie.addEventListener('click', pintar)
+
+      if (i == ctrl - 1) {
+        let breakLine = document.createElement('br')
+        document.getElementById('pixel-board').appendChild(breakLine)
+      }
+
     }
+  }
+}
 
 function generateColors() {
 
@@ -67,7 +74,7 @@ function generateColors() {
 
     randomColor += 0
   }
-// Minha contribuição para a formula que vez por outra retornava numeros quebrados
+  // Minha contribuição para a formula que vez por outra retornava numeros quebrados
 
   return randomColor;
 
@@ -84,8 +91,70 @@ function generateColors() {
   //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
 }
 
+function selecionar(box) {
 
+    
+    
+    let removeSelected = document.getElementsByClassName('color')
+
+    for(i=0; i<removeSelected.length;i+=1){
+        if (removeSelected[i].classList.contains('selected')){
+        removeSelected[i].classList.remove('selected')
+    
+        }
+    }
+
+    document.getElementById(box.target.id).classList.add('selected')
+     let selectedColor =  document.getElementById(box.target.id).style.backgroundColor
+     return selectedColor
+
+}
+
+function pintar(pen){
+    console.log('test')
+
+  let   pencil = document.getElementsByClassName('selected')[0].id
+  console.log(pencil)
+    document.getElementById(pen.target.id).style.backgroundColor = pencil
+
+}
 
 
 createPallet(4)
-createCanvas(5)
+
+let clearAll = document.createElement("button")
+document.getElementsByTagName('body')[0].appendChild(clearAll)
+clearAll.id = "clear-board"
+clearAll.innerText="Limpar"
+clearAll.addEventListener('click',limparTudo)
+
+createCanvas(controle)
+
+
+
+function limparTudo (){
+
+
+
+    for (let o = 0; o < controle; o += 1) {
+        for (let i = 0; i < controle; i += 1) {
+          
+
+
+        let ctrl = "" + i + o
+          
+          let emp = document.getElementById(ctrl)
+          emp.style.backgroundColor = "white"
+
+          }
+    
+        }
+      }
+
+
+
+
+
+
+
+
