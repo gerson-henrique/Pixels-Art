@@ -161,10 +161,12 @@ function createElement(eID, innerTxt, eEvent) {
   clearAll.innerText = innerTxt;
   clearAll.addEventListener('click', eEvent);
 }
+createPallete(4);
 
 createElement('clear-board', 'Limpar', limparTudo);
 
 const bonusInput = document.createElement('input');
+elementBody.appendChild(bonusInput)
 bonusInput.id = boardSize;
 bonusInput.type = 'number';
 bonusInput.min = 1;
@@ -173,4 +175,3 @@ createElement('generate-board', 'VQV', createCanvas);
 
 createCanvas();
 
-createPallete(4);
