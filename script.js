@@ -123,20 +123,14 @@ function createPixels() {
   runTime = false;
 }
 // desenha os pixeis da tela;
-function limparTudo(e) {
+function limparTudo() {
   const size = document.getElementById(boardSize);
-  let a = e;
-
-  console.log(a);
-
-  if (size.value > 5) {
-    a = size.value;
-  } else {
-    a = 5;
+  if (size.value < 5) {
+    size.value = 5;
   }
-  for (let o = 0; o < e; o += 1) {
-    for (let i = 0; i < e; i += 1) {
-      const eID = `''${i}${o}`;
+  for (let o = 0; o < size.value; o += 1) {
+    for (let i = 0; i < size.value; i += 1) {
+      const eID = `${i}${o}`;
       const empty = document.getElementById(eID);
       empty.style.backgroundColor = 'white';
     }
@@ -166,7 +160,7 @@ createPallete(4);
 createElement('clear-board', 'Limpar', limparTudo);
 
 const bonusInput = document.createElement('input');
-elementBody.appendChild(bonusInput)
+elementBody.appendChild(bonusInput);
 bonusInput.id = boardSize;
 bonusInput.type = 'number';
 bonusInput.min = 1;
@@ -174,4 +168,3 @@ bonusInput.min = 1;
 createElement('generate-board', 'VQV', createCanvas);
 
 createCanvas();
-
